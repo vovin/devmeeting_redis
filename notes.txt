@@ -1,0 +1,11 @@
+http://localhost:5984/_utils/
+cutl -X GET http://../_all_dbs
+/uuids?count=2
+/_utils
+PUT http://.../<nazwa>
+curl -X PUT http://localhost:5984/<db>/<klucz> -d '{"key1":"val1","key2":"val2"}'
+
+
+
+http://codr.cc/bef39f
+

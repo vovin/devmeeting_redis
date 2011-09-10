@@ -1,0 +1,20 @@
+{
+  "author": "",
+  "name": "tweet-perf",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamjodlowski/tweet-perf.git"
+  },
+  "engines": {
+    "node": "~v0.4.11"
+  },
+  "dependencies": {
+    "mysql": "~0.9.4",
+    "restify": "~0.4.3",
+    "db-mysql": "~0.6.7",
+    "redis": "~0.6.7",
+    "hiredis": "~0.1.12"
+  },
+  "devDependencies": {}
+}
