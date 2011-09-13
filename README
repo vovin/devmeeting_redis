@@ -1,2 +1,6 @@
 Basic Twitter clone using node.js (restify framework) and Redis database -- backend only, provided by pseudo-RESTful interface. Coded for purposes of http://devmeetings.pl in order to measure performance of such composition.
 
+use following command to fetch all project dependancies:
+
+npm install -d
+
