@@ -6,6 +6,32 @@ var Step = require('step');
 var OFFSET = 10000;
 var statusID = 0;
 
+var mysqlclients =[];
+Step(
+function (){
+	var group = this.group();
+	for (var i = 1,mclient; i <= 4; i++) {
+
+		mclient = mysql.createClient({
+			user: 'devcamp',
+			password: 'devcamp',
+			host: 'localhost',
+			port: 3306,
+			database: 'twitter'+i,
+		});
+		mysqlclients.push(mclient);
+		migrateDb(mclient,'twitter'+i,group());
+	};
+},
+fillAllUsersHomeline,
+function (){
+	console.log('all done!');
+	mysqlclients.forEach(function(c){
+		c.end();
+	});
+	client.quit();
+});
+
 
 function migrateDb (mclient,dbName,done) {
 	Step(
@@ -130,32 +156,6 @@ function insertFollowers(followers,done){
 	done
 	);
 }
-
-var mysqlclients =[];
-Step(
-function (){
-	var group = this.group();
-	for (var i = 1,mclient; i <= 4; i++) {
-
-		mclient = mysql.createClient({
-			user: 'devcamp',
-			password: 'devcamp',
-			host: 'localhost',
-			port: 3306,
-			database: 'twitter'+i,
-		});
-		mysqlclients.push(mclient);
-		migrateDb(mclient,'twitter'+i,group());
-	};
-},
-fillAllUsersHomeline,
-function (){
-	console.log('all done!');
-	mysqlclients.forEach(function(c){
-		c.end();
-	});
-	client.quit();
-});
 
 
 var startedUsers=0,finishedUsers=0;
