@@ -35,7 +35,6 @@ Database.prototype.insertTweet = function (username, status, callback) {
             var date = new Date();
             var gmt = date.toGMTString();
            
-            console.log(next + " " + date + " " + gmt);
             client.set(
                 "status:"+next, 
                 JSON.stringify({
@@ -54,7 +53,6 @@ Database.prototype.insertTweet = function (username, status, callback) {
 
 Database.prototype.selectTimeline = function (username, callback) {
     this.selectUser(username, function(user) {   
-        console.log(user);
         client.lrange("userhometimeline:"+ user, 0, 20, function(err, replies){  
             if(replies.length === 0) callback(JSON.parse("[]"));
             else {
@@ -79,7 +77,6 @@ Database.prototype.selectUser = function (username, callback) {
 //------------------------------------------------------------------------------
 Database.prototype.nextId = function (counter, callback) {
   client.incrby(counter, 1, function (err, reply) {
-    console.log(counter + ": " + reply);
     callback(reply);
   });
 };
